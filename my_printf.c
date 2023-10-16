@@ -14,42 +14,40 @@
  */
 int _printf(const char *format, ...)
 {
-spec_ha a[] = {
-{'c', _printf_char}, {'s', _printf_string},
-{'%', _printf_percent}, {'p', _printf_address},
-{'x', _printf_hexa}, {'X', _printf_HEXA},
-{'b', _printf_bin}, {'o', _printf_oct},
-{'R', _printf_rot13}, {'r', _printf_reversed},
-{'S', _printf_custom_String}, {'i', _printf_int},
-{'d', _printf_int}, {'u', _printf_unsigned}
-};
 va_list ptr;
-int spec;
-int j = 0;
-int length = 0;
+unsigned int j = 0;
+unsigned int res = 0;
+unsigned int str = 0;
+
 va_start(ptr, format);
 if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+{
 return (-1);
-Here:
-while (format[j] != '\0')
-{
-spec = 13;
-while (spec >= 0)
-{
-if (a[spec].c == format[spec]
-&& a[spec].c == format[j + 1])
-{
-length = length + a[spec].f(ptr);
-j = j + 2;
-goto Here;
 }
-spec--;
-}
+va_start(ptr, format);
+for (j = 0 ; format[j] != '\0' ; j++)
+{
+if (format[j] != '%')
+{
 _putchar(format[j]);
-j++;
-length++;
 }
-va_end(ptr);
-return (length);
+if (format[j + 1] == 'c')
+{
+_putchar(va_arg(ptr, int));
+j++;
+}
+else if (format[j + 1] == 's')
+{
+str = _puts(va_arg(ptr, char*));
+j++;
+res += (str - 1);
+}
+else if (format[j + 1] == '%')
+{
+_putchar('%');
+}
+res += 1;
+}
+return (res);
 }
 

@@ -15,39 +15,44 @@
 int _printf(const char *format, ...)
 {
 va_list ptr;
-unsigned int j = 0;
-unsigned int res = 0;
-unsigned int str = 0;
-
-va_start(ptr, format);
-if (format == NULL || (format[0] == '%' && format[1] == '\0'))
-{
+int cp = 0, len = 0;
+char *str, c;
+if (format == NULL)
 return (-1);
-}
 va_start(ptr, format);
-for (j = 0 ; format[j] != '\0' ; j++)
+while (*format)
 {
-if (format[j] != '%')
+if (*format != '%')
 {
-_putchar(format[j]);
+write(1, format, 1);
+cp++;
 }
-if (format[j + 1] == 'c')
+else
+format++;
+if (*format == '\0')
+break;
+if (*format == '%')
 {
-_putchar(va_arg(ptr, int));
-j++;
+write(1, format, 1);
+cp++;
 }
-else if (format[j + 1] == 's')
+else if (*format == 'c')
 {
-str = _puts(va_arg(ptr, char*));
-j++;
-res += (str - 1);
+c = va_arg(ptr, int);
+write(1, &c, 1);
+cp++;
 }
-else if (format[j + 1] == '%')
+else if (*format == 's')
+str = va_arg(ptr, char *);
+while ((str[len]) != '\0')
 {
-_putchar('%');
+len++;
+write(1, str, len);
+cp += len;
 }
-res += 1;
+format++;
 }
-return (res);
+va_end(ptr);
+return (cp);
 }
 

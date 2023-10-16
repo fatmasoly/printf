@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include <string.h>
 
 /**
  * struct flag_char - Structure to store flag characters for custom printf
@@ -41,7 +40,8 @@ int _putchar(char c);
 int _printf_char(va_list ptr);
 int _printf_string(va_list ptr);
 int _printf_percent(void);
-
+int _strlen(char *str);
+int _strlen(char *str);
 int _printf(const char *format, ...);
 int _printf_address(va_list ptr, flag *f);
 int _printf_hexa(va_list ptr, flag *f);

@@ -15,20 +15,13 @@
 int _printf(const char *format, ...)
 {
 spec_ha a[] = {
-{'c', _printf_char},
-{'s', _printf_string},
-{'%', _printf_percent},
-{'p', _printf_address},
-{'x', _printf_hexa},
-{'X', _printf_HEXA},
-{'b', _printf_bin},
-{'o', _printf_oct},
-{'R', _printf_rot13},
-{'r', _printf_reversed},
-{'S', _printf_custom_String},
-{'i', _printf_int},
-{'d', _printf_int},
-{'u', _printf_unsigned}
+{'c', _printf_char}, {'s', _printf_string},
+{'%', _printf_percent}, {'p', _printf_address},
+{'x', _printf_hexa}, {'X', _printf_HEXA},
+{'b', _printf_bin}, {'o', _printf_oct},
+{'R', _printf_rot13}, {'r', _printf_reversed},
+{'S', _printf_custom_String}, {'i', _printf_int},
+{'d', _printf_int}, {'u', _printf_unsigned}
 };
 va_list ptr;
 int spec;
@@ -37,25 +30,24 @@ int length = 0;
 va_start(ptr, format);
 if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 return (-1);
+Here:
 while (format[j] != '\0')
 {
-spec = sizeof(a) / sizeof(a[0]) - 1;
+spec = 13;
 while (spec >= 0)
 {
-if (a[spec].c == format[j])
+if (a[spec].c == format[spec]
+&& a[spec].c == format[j + 1])
 {
-length += a[spec].f(ptr);
-j++;
-break;
+length = length + a[spec].f(ptr);
+j = j + 2;
+goto Here;
 }
 spec--;
 }
-if (spec < 0)
-{
 _putchar(format[j]);
-length++;
 j++;
-}
+length++;
 }
 va_end(ptr);
 return (length);

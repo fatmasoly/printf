@@ -26,14 +26,14 @@ str = (va_arg(ptr, char *));
 if (str == NULL)
 {
 str = "(null)";
-len = strlen(str);
+len = _strlen(str);
 for (j = 0 ; j < len ; j++)
 _putchar(str[j]);
 return (len);
 }
 else
 {
-len = strlen(str);
+len = _strlen(str);
 for (j = 0 ; j < len ; j++)
 _putchar(str[j]);
 }

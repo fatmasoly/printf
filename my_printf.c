@@ -1,22 +1,21 @@
 #include "main.h"
 /**
- * print_char - Print a character.
+ * printf_char - Print a character.
  * @ptr: A va_list containing the character to print.
  *
  * Return: The number of characters printed (always 1).
  */
-static int print_char(va_list ptr)
+int printf_char(va_list ptr)
 {
 return (_putchar(va_arg(ptr, int)));
 }
-
 /**
- * print_string - Print a string.
+ * printf_string - Print a string.
  * @ptr: A va_list containing the string to print.
  *
  * Return: The number of characters printed (the string length).
  */
-static int print_string(va_list ptr)
+int printf_string(va_list ptr)
 {
 char *str;
 int len = 0;
@@ -42,6 +41,36 @@ len++;
 return (len);
 }
 /**
+ * printf_int - Print an integer.
+ * @ptr: A va_list containing the integer to print.
+ *
+ * Return: The number of characters printed.
+ */
+int printf_int(va_list ptr)
+{
+int num;
+int len = 0;
+num = va_arg(ptr, int);
+if (num < 0)
+{
+_putchar('-');
+num = -num;
+len++;
+}
+if (num == 0)
+{
+_putchar('0');
+return (1);
+}
+while (num > 0)
+{
+_putchar((num % 10) + '0');
+num /= 10;
+len++;
+}
+return (len);
+}
+/**
  * _printf - Custom printf function that processes format specifiers.
  * @format: A format string that specifies the desired output format.
  * @...: A variable number of arguments corresponding to the format specifiers.
@@ -57,11 +86,11 @@ return (len);
 int _printf(const char *format, ...)
 {
 va_list ptr;
-int j = 0, res = 0;
+int res = 0, j = 0;
 va_start(ptr, format);
 if (!format)
 return (-1);
-while (format[j] != '\0')
+for (j = 0 ; format[j] != '\0' ; j++)
 {
 if (format[j] != '%')
 {
@@ -73,27 +102,29 @@ else
 j++;
 if (format[j] == '\0')
 break;
-if (format[j] == 'c')
+switch (format[j])
 {
-res += print_char(ptr);
-}
-else if (format[j] == 's')
-{
-res += print_string(ptr);
-}
-else if (format[j] == '%')
-{
+case 'c':
+res += printf_char(ptr);
+break;
+case 's':
+res += printf_string(ptr);
+break;
+case 'd':
+case 'i':
+res += printf_int(ptr);
+break;
+case '%':
 _putchar('%');
 res++;
-}
-else
-{
+break;
+default:
 _putchar('%');
 _putchar(format[j]);
 res += 2;
+break;
 }
 }
-j++;
 }
 va_end(ptr);
 return (res);

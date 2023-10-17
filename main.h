@@ -9,5 +9,7 @@
 int _puts(char *c);
 int _putchar(char c);
 int _printf(const char *format, ...);
+int printf_int(va_list ptr);
+
 
 #endif

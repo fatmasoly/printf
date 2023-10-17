@@ -43,7 +43,6 @@ return (count);
  */
 int printf_unsigned(unsigned int num, int b)
 {
-char num_str[21];
 unsigned int count = 0;
 if (num == 0)
 {
@@ -52,21 +51,9 @@ count++;
 }
 else
 {
-int i = 0;
-while (num > 0)
-{
-num_str[i] = '0' + (num % b);
-num /= b;
-i++;
+count += printf_unsigned_recurs(num, b);
 }
-while (i > 0)
-{
-i--;
-_putchar(num_str[i]);
-count++;
-}
-}
-    return (count);
+return (count);
 }
 /**
  * printf_unsigned_recurs - Recursively print an unsigned integer.

@@ -84,6 +84,9 @@ case 'd':
 case 'i':
 res += printf_int(ptr);
 break;
+case 'u':
+res += printf_unsigned(va_arg(ptr, unsigned int), 10);
+break;
 case '%':
 _putchar('%');
 res++;

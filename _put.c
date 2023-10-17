@@ -1,5 +1,4 @@
 #include "main.h"
-#include <unistd.h>
 /**
  * _puts - Print a string to stdout.
  * @c: A pointer to the string to print.

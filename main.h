@@ -10,6 +10,8 @@ int _puts(char *c);
 int _putchar(char c);
 int _printf(const char *format, ...);
 int printf_int(va_list ptr);
+int printf_num(int num, int b);
+int printf_recurs(int num, int b);
 
 
 #endif

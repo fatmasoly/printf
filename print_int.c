@@ -11,10 +11,10 @@
  */
 int printf_int(va_list ptr)
 {
-unsigned int num;
+int num;
 int count = 0;
-num = va_arg(ptr, unsigned int);
-if (num <= 0)
+num = va_arg(ptr, int);
+if (num < 0)
 {
 _putchar('-');
 count++;

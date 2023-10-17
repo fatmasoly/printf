@@ -14,7 +14,21 @@ int printf_int(va_list ptr)
 int num;
 int count = 0;
 num = va_arg(ptr, int);
-count += printf_num(num, 10);
+if (num < 0)
+{
+_putchar('-');
+count++;
+num = -num;
+}
+if (num == 0)
+{
+_putchar('0');
+count++;
+}
+else
+{
+count += printf_recurs(num, 10);
+}
 return (count);
 }
 /**

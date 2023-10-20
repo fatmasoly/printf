@@ -79,6 +79,12 @@ break;
 case 'S':
 res += printf_STRING(ptr);
 break;
+case 'x':
+res += printf_hexa(va_arg(ptr, 0);
+break;
+case 'X':
+res += printf_hexa(va_arg(ptr, 1);
+break;
 case '%':
 _putchar('%');
 res++;

@@ -25,7 +25,7 @@ _putchar('0');
 return (3);
 }
 val = (unsigned long int)addr;
-while (val!= 0)
+while (val != 0)
 {
 x_dig[count] = x[val % 16];
 val /= 16;

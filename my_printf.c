@@ -80,10 +80,10 @@ case 'S':
 res += printf_STRING(ptr);
 break;
 case 'x':
-res += printf_hexa(va_arg(ptr, 0);
+res += printf_hexa(va_arg(ptr, unsigned int), 0);
 break;
 case 'X':
-res += printf_hexa(va_arg(ptr, 1);
+res += printf_hexa(va_arg(ptr, unsigned int), 1);
 break;
 case '%':
 _putchar('%');

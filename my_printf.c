@@ -88,6 +88,9 @@ break;
 case 'o':
 res += printf_oct(va_arg(ptr, unsigned int));
 break;
+case 'p':
+res += printf_p(ptr);
+break;
 case '%':
 _putchar('%');
 res++;

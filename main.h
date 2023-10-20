@@ -18,6 +18,7 @@ int printf_bin(unsigned int num);
 int printf_STRING(va_list ptr);
 int printf_hexa(unsigned int num, int upper);
 int printf_oct(unsigned int  num);
+int printf_p(va_list ptr);
 
 
 #endif

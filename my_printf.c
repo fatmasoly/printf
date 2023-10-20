@@ -85,6 +85,9 @@ break;
 case 'X':
 res += printf_hexa(va_arg(ptr, unsigned int), 1);
 break;
+case 'o':
+res += printf_oct(va_arg(ptr, unsigned int));
+break;
 case '%':
 _putchar('%');
 res++;

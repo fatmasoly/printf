@@ -45,4 +45,43 @@ count++;
 }
 return (count);
 }
-
+/**
+ * printf_oct - Print an unsigned integer in octal format.
+ * @num: The unsigned integer to print in octal format.
+ *
+ * This function converts and prints an unsigned integer in octal format.
+ * It ensures leading zeros are skipped the output is correctly formatted.
+ *
+ * Return: The number of characters printed.
+ */
+int printf_oct(unsigned int  num)
+{
+int count = 0, i;
+char oct[12];
+int skip;
+if (num == 0)
+{
+_putchar('0');
+count++;
+}
+else
+{
+for (i = 11 ; i >= 0 ; i--)
+{
+oct[i] = (num & 7) + '0';
+num >>= 3;
+}
+skip = 1;
+for (i = 0 ; i < 12 ; i++)
+{
+if (skip && oct[i] == '0')
+{
+continue;
+}
+skip = 0;
+_putchar(oct[i]);
+count++;
+}
+}
+return (count);
+}

@@ -76,6 +76,9 @@ break;
 case 'b':
 res += printf_bin(va_arg(ptr, unsigned int));
 break;
+case 'S':
+res += printf_STRING(ptr);
+break;
 case '%':
 _putchar('%');
 res++;

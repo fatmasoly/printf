@@ -19,10 +19,12 @@ char x_dig[16];
 void *addr = va_arg(ptr, void *);
 if (addr == NULL)
 {
-_putchar('0');
-_putchar('x');
-_putchar('0');
-return (3);
+_putchar('(');
+_putchar('n');
+_putchar('i');
+_putchar('l');
+_putchar(')');
+return (5);
 }
 val = (unsigned long int)addr;
 while (val != 0)

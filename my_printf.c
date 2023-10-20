@@ -41,6 +41,54 @@ len++;
 return (len);
 }
 /**
+ * printf_switch - Handle format specifier and print corresponding value.
+ * @ptr: A va_list containing the arguments to print.
+ * @format: The format specifier to determine the print behavior.
+ *
+ * This function processes the given format specifier and calls
+ * the appropriate function to print the corresponding value. It supports
+ * format specifiers for character, string, integer, unsigned integer, and
+ * the percent sign.
+ *
+ * @ptr: A va_list containing the arguments to print.
+ * @format: The format specifier to process.
+ *
+ * Return: The number of characters successfully printed.
+ */
+int printf_switch(va_list ptr, char format)
+{
+int res = 0;
+switch (format)
+{
+case 'c':
+res += printf_char(ptr);
+break;
+case 's':
+res += printf_string(ptr);
+break;
+case 'd':
+case 'i':
+res += printf_int(ptr);
+break;
+case 'u':
+res += printf_unsigned(va_arg(ptr, unsigned int), 10);
+break;
+case 'b':
+res += printf_bin(va_arg(ptr, unsigned int));
+break;
+case '%':
+_putchar('%');
+res++;
+break;
+default:
+_putchar('%');
+_putchar(format);
+res += 2;
+break;
+}
+return (res);
+}
+/**
  * _printf - Custom printf function that processes format specifiers.
  * @format: A format string that specifies the desired output format.
  * @...: A variable number of arguments corresponding to the format specifiers.
@@ -72,34 +120,9 @@ else
 j++;
 if (format[j] == '\0')
 break;
-switch (format[j])
-{
-case 'c':
-res += printf_char(ptr);
-break;
-case 's':
-res += printf_string(ptr);
-break;
-case 'd':
-case 'i':
-res += printf_int(ptr);
-break;
-case 'u':
-res += printf_unsigned(va_arg(ptr, unsigned int), 10);
-break;
-case '%':
-_putchar('%');
-res++;
-break;
-default:
-_putchar('%');
-_putchar(format[j]);
-res += 2;
-break;
-}
+res += printf_switch(ptr, format[j]);
 }
 }
 va_end(ptr);
 return (res);
 }
-

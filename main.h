@@ -14,6 +14,7 @@ int printf_num(int num, int b);
 int printf_recurs(int num, int b);
 int printf_unsigned(unsigned int num, int b);
 int printf_unsigned_recurs(unsigned int num, int b);
+int printf_bin(unsigned int num);
 
 
 #endif
